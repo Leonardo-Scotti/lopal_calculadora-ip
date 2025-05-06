@@ -1,7 +1,6 @@
 package br.dev.leonardo.calculadora_ip;
 
 import br.dev.leonardo.calculadora_ip.gui.TelaCalculadora;
-import br.dev.leonardo.calculadora_ip.model.Ipv4;
 
 public class CalculadoraApp {
 
