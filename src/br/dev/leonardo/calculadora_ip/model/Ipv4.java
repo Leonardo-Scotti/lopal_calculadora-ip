@@ -1,33 +1,33 @@
 package br.dev.leonardo.calculadora_ip.model;
 
 public class Ipv4 {
-	private int primeiroOcteto;    // Primeiro octeto do IP;
-	private int segundoOcteto;     // Segundo octeto do IP;
-	private int terceiroOcteto;    // Terceiro octeto do IP;
-	private int quartoOcteto;      // Quarto e último octeto do IP;
-	private int cidr;              // Máscara de sub-rede em formato CIDR. Ex: /24;
-	private double mascaraDecimal; // Máscara de sub-rede em Decimal.      Ex: 255.255.255.0;
+	private String primeiroOcteto; // Primeiro octeto do IP;
+	private String segundoOcteto; // Segundo octeto do IP;
+	private String terceiroOcteto; // Terceiro octeto do IP;
+	private String quartoOcteto; // Quarto e último octeto do IP;
+	private String cidr; // Máscara de sub-rede em formato CIDR. Ex: /24;
+	private double mascaraDecimal; // Máscara de sub-rede em Decimal. Ex: 255.255.255.0;
 	private double mascaraBinario; // Máscara de sub-rede em Binário;
-	private String classe;         // Classe do IP.                        Ex: A || B || C || D || E.
+	private String classe; // Classe do IP. Ex: A || B || C || D || E.
 
-	// ==========Métodos Get==========
-	public int getOcteto1() {
+	// ==========MÉTODOS GET==========
+	public String getPrimeiroOcteto() {
 		return primeiroOcteto;
 	}
 
-	public int getOcteto2() {
+	public String getSegundoOcteto() {
 		return segundoOcteto;
 	}
 
-	public int getOcteto3() {
+	public String getTerceiroOcteto() {
 		return terceiroOcteto;
 	}
 
-	public int getOcteto4() {
+	public String getQuartoOcteto() {
 		return quartoOcteto;
 	}
 
-	public int getCidr() {
+	public String getCidr() {
 		return cidr;
 	}
 
@@ -40,29 +40,58 @@ public class Ipv4 {
 	}
 
 	public String getClasse() {
-		String binario8bits = String.format("%8s", Integer.toBinaryString(primeiroOcteto)).replace(' ', '0');
-		System.out.println(binario8bits);
-		return binario8bits;
-	}
-	
-	// ==========Métodos Set==========
-	public void setOcteto1(int octeto1) {
-		this.primeiroOcteto = octeto1;
+		String erro = "* Por favor, digite apenas números de IP válido (1-255)!";
+		try {
+			int numeroPrimeiroOcteto = Integer.parseInt(primeiroOcteto);
+			if(numeroPrimeiroOcteto >= 1 && numeroPrimeiroOcteto <= 127) {
+				this.classe = "A";
+				System.out.println(classe);
+				return classe;
+			} else if (numeroPrimeiroOcteto >= 128 && numeroPrimeiroOcteto <= 191) {
+				this.classe = "B";
+				System.out.println(classe);
+				return classe;
+			} else if (numeroPrimeiroOcteto >= 192 && numeroPrimeiroOcteto <= 223) {
+				this.classe = "C";
+				System.out.println(classe);
+				return classe;
+			} else if (numeroPrimeiroOcteto >= 224 && numeroPrimeiroOcteto <= 239) {
+				this.classe = "D";
+				System.out.println(classe);
+				return classe;
+			} else if (numeroPrimeiroOcteto >= 240 && numeroPrimeiroOcteto <= 255) {
+				this.classe = "E";
+				System.out.println(classe);
+				return classe;
+			} else {
+				System.out.println(erro);
+				return erro;
+			}
+		} catch (Exception e) {
+			System.out.println(erro);
+			return erro;
+		}
 	}
 
-	public void setOcteto2(int octeto2) {
-		this.segundoOcteto = octeto2;
+	// ==========MÉTODOS SET==========
+
+	public void setPrimeiroOcteto(String primeiroOcteto) {
+		this.primeiroOcteto = primeiroOcteto;
 	}
 
-	public void setOcteto3(int octeto3) {
-		this.terceiroOcteto = octeto3;
+	public void setSegundoOcteto(String segundoOcteto) {
+		this.segundoOcteto = segundoOcteto;
 	}
 
-	public void setOcteto4(int octeto4) {
-		this.quartoOcteto = octeto4;
+	public void setTerceiroOcteto(String terceiroOcteto) {
+		this.terceiroOcteto = terceiroOcteto;
 	}
 
-	public void setCidr(int cidr) {
+	public void setQuartoOcteto(String quartoOcteto) {
+		this.quartoOcteto = quartoOcteto;
+	}
+
+	public void setCidr(String cidr) {
 		this.cidr = cidr;
 	}
 
